@@ -1,6 +1,6 @@
 # 🎨 WPF Level Editor
 
-![Level Editor Thumbnail](Screenshots/thumbnail.png)
+![Level Editor Thumbnail](ScreenShot/thumbnail.png)
 
 WPF を用いて制作した **3D グリッドベースのレベルエディタ** です。  
 プランナーがレベルを構築し、そのデータを Houdini → Unreal Engine へ連携することを想定して設計しました。
@@ -147,6 +147,14 @@ View には描画とバインディングのみを持たせ、
 
 ---
 
+## ⚠ 現状の課題
+
+- Unreal Engine への直接連携は未実装
+- 大規模マップでのパフォーマンス検証は未実施
+- オブジェクトの階層管理機能は未実装
+
+---
+
 ### ■ 今後の展望
 
 - Unreal Engine へ直接インポート可能なデータ形式の実装
@@ -161,4 +169,5 @@ View には描画とバインディングのみを持たせ、
 
 ## 🎥 デモ
 以下は実際の操作デモです。
+
 [![Play Video](https://img.youtube.com/vi/NxIJX_QBbUs/0.jpg)](https://youtu.be/NxIJX_QBbUs)
