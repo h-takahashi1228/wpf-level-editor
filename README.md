@@ -169,6 +169,5 @@ View には描画とバインディングのみを持たせ、
 ---
 
 ## 🎥 デモ
-以下は実際の操作デモです。
 
 [![Play Video](https://img.youtube.com/vi/NxIJX_QBbUs/0.jpg)](https://youtu.be/NxIJX_QBbUs)
