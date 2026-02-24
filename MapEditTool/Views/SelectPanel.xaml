@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="MapEditTool.Views.SelectPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel>
+
+        <TextBlock Text="Select Mode"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="0,0,0,10"/>
+
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="MapEditTool.View3D.Map3DView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MapEditTool.View3D"
+             DataContext="{Binding Map3D}">
+
+    <Grid>
+        <Viewport3D x:Name="Viewport"
+            MouseLeftButtonDown="OnMouseLeftDown"
+            MouseLeftButtonUp="OnMouseLeftUp"
+            MouseRightButtonDown="OnMouseRightDown"
+            MouseRightButtonUp="OnMouseRightUp"
+            MouseMove="OnMouseMove"
+            MouseWheel="OnMouseWheel">
+            <!-- カメラ -->
+            <Viewport3D.Camera>
+                <PerspectiveCamera
+                    Position="{Binding Camera.Position}"
+                    LookDirection="{Binding Camera.LookDirection}"
+                    UpDirection="{Binding Camera.UpDirection}"
+                    FieldOfView="{Binding Camera.FieldOfView}" />
+            </Viewport3D.Camera>
+
+
+            <!-- ライト -->
+            <ModelVisual3D Content="{Binding LightRoot}" />
+
+            <!-- メッシュ -->
+            <ModelVisual3D Content="{Binding GeometryRoot}" />
+
+        </Viewport3D>
+    </Grid>
+</UserControl>

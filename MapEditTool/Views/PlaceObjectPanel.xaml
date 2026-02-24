@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="MapEditTool.Views.PlaceObjectPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:MapEditTool.Helpers"
+             xmlns:conv="clr-namespace:MapEditTool.Converters">
+
+    <UserControl.Resources>
+        <conv:IntEqualsConverter x:Key="IntEqualsConverter"/>
+    </UserControl.Resources>
+
+    <StackPanel>
+
+        <TextBlock Text="Create Object Mode"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="0,0,0,10"/>
+
+        <!-- Type -->
+        <TextBlock Text="Type"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="0,0,0,5"/>
+
+        <ComboBox ItemsSource="{Binding Source={x:Static helpers:EnumProvider.ObjectTypes}}"
+                  SelectedItem="{Binding CurrentObjectType}"
+                  Width="120"/>
+
+        <TextBlock Text="このオブジェクトはこれ以上設置できません"
+           Foreground="Red"
+           Margin="0,5,0,0">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding UiState.CanPlace}" Value="False">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <!-- Yaw -->
+        <TextBlock Text="Rotate" Foreground="White" FontWeight="Bold" Margin="0,0,0,5"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <ToggleButton Content="0°" Width="40" Margin="0,0,5,0"
+                  IsChecked="{Binding CurrentObjectYaw,
+                      Converter={StaticResource IntEqualsConverter},
+                      ConverterParameter=0,
+                      Mode=TwoWay}"/>
+
+            <ToggleButton Content="90°" Width="40" Margin="0,0,5,0"
+                  IsChecked="{Binding CurrentObjectYaw,
+                      Converter={StaticResource IntEqualsConverter},
+                      ConverterParameter=90,
+                      Mode=TwoWay}"/>
+
+            <ToggleButton Content="180°" Width="40" Margin="0,0,5,0"
+                  IsChecked="{Binding CurrentObjectYaw,
+                      Converter={StaticResource IntEqualsConverter},
+                      ConverterParameter=180,
+                      Mode=TwoWay}"/>
+
+            <ToggleButton Content="270°" Width="40"
+                  IsChecked="{Binding CurrentObjectYaw,
+                      Converter={StaticResource IntEqualsConverter},
+                      ConverterParameter=270,
+                      Mode=TwoWay}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

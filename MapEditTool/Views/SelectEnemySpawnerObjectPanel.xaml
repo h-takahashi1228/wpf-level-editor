@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="MapEditTool.Views.SelectEnemySpawnerObjectPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:MapEditTool.Converters"
+             xmlns:helpers="clr-namespace:MapEditTool.Helpers">
+
+    <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <StackPanel>
+
+        <TextBlock Text="Enemy Spawner"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="0,0,0,10"/>
+
+        <!-- XYZ -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+            <TextBlock Text="X" Foreground="White" Margin="0,0,5,0"/>
+            <TextBox Width="45" Text="{Binding X, UpdateSourceTrigger=LostFocus}" Margin="0,0,10,0"/>
+
+            <TextBlock Text="Y" Foreground="White" Margin="0,0,5,0"/>
+            <TextBox Width="45" Text="{Binding Y, UpdateSourceTrigger=LostFocus}" Margin="0,0,10,0"/>
+
+            <TextBlock Text="Z" Foreground="White" Margin="0,0,5,0"/>
+            <TextBox Width="45" Text="{Binding Z, UpdateSourceTrigger=LostFocus}"/>
+        </StackPanel>
+
+        <TextBlock Text="この座標には既にブロック/オブジェクトが存在します"
+                   Foreground="Red"
+                   FontSize="10"
+                   Visibility="{Binding PositionError, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+        <!-- 敵リスト -->
+        <TextBlock Text="Enemy Spawn List"
+                   Foreground="White"
+                   FontWeight="Bold"
+                   Margin="0,10,0,5"/>
+        
+        <Button Content="追加"
+                Margin="0,10,0,0"
+                Command="{Binding AddSpawnEntryCommand}"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+              Height="300">
+
+            <ItemsControl ItemsSource="{Binding SpawnEntries}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#444"
+                        BorderThickness="1"
+                        Padding="10"
+                        Margin="0,0,0,10"
+                        Background="#222">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Enemy Type -->
+                                <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                                    <TextBlock Text="Enemy Type"
+                                       Foreground="White"
+                                       Margin="0,0,0,3"/>
+                                    <ComboBox Width="150"
+                                      ItemsSource="{x:Static helpers:EnumProvider.EnemyType}"
+                                      SelectedItem="{Binding EnemyType, Mode=TwoWay}"/>
+                                </StackPanel>
+
+                                <!-- Spawn Time -->
+                                <StackPanel Grid.Row="1" Margin="0,0,0,10">
+                                    <TextBlock Text="Spawn Time"
+                                       Foreground="White"
+                                       Margin="0,0,0,3"/>
+                                    <TextBox Width="100"
+                                     Text="{Binding SpawnTime, UpdateSourceTrigger=LostFocus}"/>
+                                </StackPanel>
+
+                                <!-- 削除ボタン -->
+                                <StackPanel Grid.Row="2"
+                                    HorizontalAlignment="Right">
+                                    <Button Content="削除"
+                                    Width="70"
+                                    Command="{Binding DataContext.RemoveSpawnEntryCommand,
+                                                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    CommandParameter="{Binding}"/>
+                                </StackPanel>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+    </StackPanel>
+</UserControl>
