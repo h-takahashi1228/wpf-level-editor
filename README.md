@@ -5,6 +5,8 @@
 WPF を用いて制作した **3D グリッドベースのレベルエディタ** です。  
 プランナーがレベルを構築し、そのデータを Houdini → Unreal Engine へ連携することを想定して設計しました。
 
+実行用ファイル: [MapEditTool.zip](https://github.com/h-takahashi1228/wpf-level-editor/releases)
+
 ---
 
 ## 📌 概要
